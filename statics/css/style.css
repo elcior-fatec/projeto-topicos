@@ -1,0 +1,78 @@
+.logo--logo{
+    height: 35px;
+    width: auto;
+}
+.home--body{
+    background: url(../img/71234.jpg);
+    background-color: #3498DB;
+    height: 428px;
+    background-position: center;
+    background-position-y: -218px;
+    
+}
+
+/*BOX LOGIN*/
+.padding--login-box{
+    margin-top: 15%;
+}
+.login--box{
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-bottom: 12px; 
+    margin-top: 12px;   
+    padding: 12px;
+}
+    .login--box .logo{
+        margin-bottom: 12px;
+    }
+.logo--fatec{
+    width: 35%;
+    height: auto;
+}
+.form-group.group-login-email{
+    margin-bottom: -1px;
+}
+
+/***CORES OPÇÃO UM***/
+/* Color Theme Swatches in Hex */
+.Tríade-based-on-blue-3498db-1-hex { color: #818181; }
+.Tríade-based-on-blue-3498db-2-hex { color: #FFFFFF; }
+.Tríade-based-on-blue-3498db-3-hex { color: #343a40; }
+.Tríade-based-on-blue-3498db-4-hex { color: #3498DB; }
+.Tríade-based-on-blue-3498db-5-hex { color: #69A4CC; }
+
+/* Color Theme Swatches in RGBA */
+.Tríade-based-on-blue-3498db-1-rgba { color: rgba(128, 128, 128, 1); }
+.Tríade-based-on-blue-3498db-2-rgba { color: rgba(254, 254, 254, 1); }
+.Tríade-based-on-blue-3498db-3-rgba { color: rgba(52, 58, 64, 1); }
+.Tríade-based-on-blue-3498db-4-rgba { color: rgba(52, 151, 219, 1); }
+.Tríade-based-on-blue-3498db-5-rgba { color: rgba(105, 163, 204, 1); }
+
+/* Color Theme Swatches in HSLA */
+.Tríade-based-on-blue-3498db-1-hsla { color: hsla(0, 0, 50, 1); }
+.Tríade-based-on-blue-3498db-2-hsla { color: hsla(0, 0, 99, 1); }
+.Tríade-based-on-blue-3498db-3-hsla { color: hsla(210, 10, 23, 1); }
+.Tríade-based-on-blue-3498db-4-hsla { color: hsla(204, 69, 53, 1); }
+.Tríade-based-on-blue-3498db-5-hsla { color: hsla(204, 49, 60, 1); }
+
+/***CORES OPÇÃO DOIS***/
+/* Color Theme Swatches in Hex */
+.New-York-Stock-Exchange-1-hex { color: #BBBF4E; }
+.New-York-Stock-Exchange-2-hex { color: #59381C; }
+.New-York-Stock-Exchange-3-hex { color: #F27127; }
+.New-York-Stock-Exchange-4-hex { color: #D94D1A; }
+.New-York-Stock-Exchange-5-hex { color: #593838; }
+
+/* Color Theme Swatches in RGBA */
+.New-York-Stock-Exchange-1-rgba { color: rgba(187, 191, 78, 1); }
+.New-York-Stock-Exchange-2-rgba { color: rgba(89, 56, 27, 1); }
+.New-York-Stock-Exchange-3-rgba { color: rgba(242, 113, 38, 1); }
+.New-York-Stock-Exchange-4-rgba { color: rgba(216, 76, 26, 1); }
+.New-York-Stock-Exchange-5-rgba { color: rgba(89, 56, 56, 1); }
+
+/* Color Theme Swatches in HSLA */
+.New-York-Stock-Exchange-1-hsla { color: hsla(61, 46, 52, 1); }
+.New-York-Stock-Exchange-2-hsla { color: hsla(28, 52, 22, 1); }
+.New-York-Stock-Exchange-3-hsla { color: hsla(22, 88, 55, 1); }
+.New-York-Stock-Exchange-4-hsla { color: hsla(16, 78, 47, 1); }
+.New-York-Stock-Exchange-5-hsla { color: hsla(0, 22, 28, 1); }

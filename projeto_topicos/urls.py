@@ -16,6 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from sobre_projeto.views import sobre
+
 urlpatterns = [
+    path('sobre/', sobre),
     path('admin/', admin.site.urls),
 ]
