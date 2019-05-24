@@ -34,7 +34,7 @@
     </style>
 
     <!-- Custom styles for this template -->
-    <link href="{% statics 'css/estilo.css' %}" rel="stylesheet">
+    <link href="{% static 'css/estilo.css' %}" rel="stylesheet">
 </head>
 
 <body class="d-flex flex-column h-100">
@@ -65,6 +65,7 @@
                     </div>
                 </li>
             </ul>
+            <a class="nav-link" href="{% url 'logout' %}">Sair</a>
         </div>
     </nav>
 

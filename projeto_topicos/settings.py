@@ -129,3 +129,6 @@ STATICFILES_DIRS = [
     'statics',
 ]
 
+LOGIN_URL = '/login/'
+
+LOGIN_REDIRECT_URL = 'sobre'
