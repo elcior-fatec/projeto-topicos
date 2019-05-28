@@ -64,8 +64,11 @@
                         <a class="dropdown-item" href="#">Ação 3</a>
                     </div>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Sair</a>
+                </li>
             </ul>
-            <a class="nav-link" href="{% url 'logout' %}">Sair</a>
+            <p class="boas-vindas" style="color: white;">Seja Bem-vindo, {{user.username}}</p>
         </div>
     </nav>
 

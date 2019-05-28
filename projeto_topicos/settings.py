@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'sobre_projeto',
+    'filtro_cnae',
 ]
 
 MIDDLEWARE = [
