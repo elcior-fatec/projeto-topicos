@@ -218,3 +218,7 @@ body {
     height: 10rem;
     width: auto;
 }
+
+.bg-blue-brand{
+    background-color: #0091ce;
+}
