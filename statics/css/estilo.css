@@ -19,6 +19,12 @@ img.nav-logo{
     height: 2.5rem;
     width: auto;
 }
+
+.boas-vindas{
+    color: #FFFFFF;
+    margin-bottom: 0;
+}
+
 .form-signin .logo-fatec{
     width: 5rem;
     height: auto;
