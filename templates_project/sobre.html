@@ -34,11 +34,11 @@
     </style>
 
     <!-- Custom styles for this template -->
-    <link href="{% static 'css/estilo.css' %}" rel="stylesheet">
+    <link href="{% static 'css/folha-estilo.css' %}" rel="stylesheet">
 </head>
 
 <body class="d-flex flex-column h-100">
-    <nav class="navbar navbar-expand-md navbar-dark bg-blue-brand fixed-top">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
         <a class="navbar-brand" href="./login.html">
             <img src="{% static 'img/logo-proj.png' %}" alt="Logo" class="nav-logo">
         </a>
@@ -69,7 +69,7 @@
                 </li>
             </ul>
             <p class="boas-vindas">
-                <i class="fas fa-laugh-beam fa-lg"></i> Seja Bem-vindo, {{user.username}}
+                Seja Bem-vindo, {{user.username}}
             </p>
         </div>
     </nav>

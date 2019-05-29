@@ -3,10 +3,15 @@
     padding: 3rem 1.5rem;
     text-align: center;
 }
+
 h1,
 h2,
 h3{
     color: #3498DB;
+}
+
+nav.bg-blue-brand {
+    background-color: #0091ce;
 }
 
 /*.container {
@@ -24,6 +29,7 @@ img.nav-logo{
     color: #FFFFFF;
     margin-bottom: 0;
 }
+
 
 .form-signin .logo-fatec{
     width: 5rem;
@@ -217,8 +223,4 @@ body {
 .sobre-avatar{
     height: 10rem;
     width: auto;
-}
-
-.bg-blue-brand{
-    background-color: #0091ce;
 }

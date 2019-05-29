@@ -10,15 +10,37 @@ import os
 # TODO função para verificar se o diretorio json esta vazio ou se existe arquivo do dia atual
 # TODO funções para realizar a busca pela classe CNAE
 
-def get_cnae_json():
+def get_classes_json():
     classes_json = requests.get(url=f'https://servicodados.ibge.gov.br/api/v2/cnae/classes')
     return classes_json
 
 
+def get_secoes_json():
+    secoes_json = requests.get(url=f'https://servicodados.ibge.gov.br/api/v2/cnae/secoes')
+    return secoes_json
+
+
+def get_divisoes_json(secao_id):
+    divisoes_json = requests.get(url=f'https://servicodados.ibge.gov.br/api/v2/cnae/secoes/{secao_id}/divisoes')
+    return divisoes_json
+
+
 @login_required
-def search_classes(request):
-    classes_collected = get_cnae_json().json()
-    # return HttpResponse(classes_collected)
+def list_secoes(request):
+    secoes_collected = get_secoes_json().json()
     return render(request,
-                  'list-classes.html',
-                  {'classes_collected': classes_collected})
+                  'list-secoes.html',
+                  {'secoes_collected': secoes_collected})
+
+
+@login_required
+def list_divisoes(request, secao_id):
+
+    divisao_collected = get_divisoes_json(secao_id).json()
+    secoes_collected = get_secoes_json().json()
+    road = {'secao_id': secao_id}
+    return render(request,
+                  'list-divisoes.html',
+                  {'divisao_collected': divisao_collected},
+                  {'secoes_collected': secoes_collected},
+                  {'road': road})
