@@ -6,8 +6,6 @@ import requests
 import os
 
 
-# TODO função para baixar o json e salvar no diretorio
-# TODO função para verificar se o diretorio json esta vazio ou se existe arquivo do dia atual
 # TODO funções para realizar a busca pela classe CNAE
 
 def get_classes_json():
