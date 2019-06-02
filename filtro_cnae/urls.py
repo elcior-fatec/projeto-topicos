@@ -6,5 +6,5 @@ from .views import list_divisoes
 
 urlpatterns = [
     path('list-secoes/', list_secoes, name="list_secoes"),
-    path('list-divisoes/<str:secao_id>/', list_divisoes, name="list_divisoes"),
+    path('list-divisoes/', list_divisoes, name="list_divisoes"),
 ]
