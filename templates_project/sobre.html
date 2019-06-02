@@ -1,43 +1,11 @@
-{% load static %}
-<!doctype html>
-<html lang="pt-br">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <title>Sobre o projeto</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/starter-template/">
+{% block title %}Sobre o projeto{% endblock %}
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
-    </style>
-
-    <!-- Custom styles for this template -->
-    <link href="{% static 'css/folha-estilo.css' %}" rel="stylesheet">
-</head>
-
-<body class="d-flex flex-column h-100">
+{% block nav %}
+    {% load static %}
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
         <a class="navbar-brand" href="#">
             <img src="{% static 'img/logo-proj.png' %}" alt="Logo" class="nav-logo">
@@ -69,64 +37,46 @@
             <p class="boas-vindas">Bem-vindo, {{user.username}} <i class="fas fa-user"></i></p>
         </div>
     </nav>
+{% endblock %}
 
-    <main role="main" class="flex-shrink-0">
 
-        <div class="container">
-            <ul class="list-unstyled">
-                <li class="media">
-                    <div class="media-body">
-                        <h1>Sobre o projeto</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ligula augue, luctus quis
-                            ante ac, viverra feugiat nibh. In vitae commodo arcu. Suspendisse facilisis magna non cursus
-                            placerat. Vivamus varius lacus non massa varius varius. Nulla blandit leo nec purus mattis,
-                            eget tincidunt nunc condimentum. Phasellus suscipit, libero ac feugiat maximus, nibh nisi
-                            interdum purus, at mollis ante nunc vitae ligula.</p>
-                        <p>Curabitur non gravida quam. Maecenas vitae dapibus leo. Aenean vestibulum eget nibh at
-                            fringilla.</p>
-                        <p>Fusce feugiat, erat quis tincidunt feugiat, dui orci tempus tortor, eu venenatis leo lectus a
-                            odio. Nullam eu velit nec sapien aliquet accumsan. Fusce et elit ullamcorper, sollicitudin
-                            sapien et, finibus lorem. In nec vehicula libero. Etiam porttitor sagittis euismod. Quisque
-                            pharetra, diam sed volutpat egestas, enim arcu ornare enim, vitae gravida tortor risus at
-                            sapien.</p>
-                    </div>
-                </li>
-                <li class="media my-4">
-                    <div class="media-body">
-                        <h2 class="mt-0 mb-1">Fulano</h2>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras
-                        purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi
-                        vulputate fringilla. Donec lacinia congue felis in faucibus.
-                    </div>
-                    <img src="{% static 'img/avatar-02.jpg' %}" class="ml-3 sobre-avatar" alt="Avatar 2">
-                </li>
-                <li class="media">
-                    <img src="{% static 'img/avatar-01.jpg' %}" class="mr-3 sobre-avatar" alt="Avatar 1">
-                    <div class="media-body">
-                        <h2 class="mt-0 mb-1">Caboclo</h2>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras
-                        purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi
-                        vulputate fringilla. Donec lacinia congue felis in faucibus.
-                    </div>
-                </li>
-            </ul>
-        </div>
-
-    </main><!-- /.container -->
-
-    <footer class="footer mt-auto py-3">
-        <div class="container">
-                <span class="text-muted">Carvalho & Fraga&copy;Fatec 2019</span>
-        </div>
-    </footer><!-- /.footer -->
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"><\/script>')</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"
-        integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o"
-        crossorigin="anonymous"></script>
-</body>
-
-</html>
+{% block main %}
+    {% load static %}
+    <ul class="list-unstyled">
+        <li class="media">
+            <div class="media-body">
+                <h1>Sobre o projeto</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ligula augue, luctus quis
+                    ante ac, viverra feugiat nibh. In vitae commodo arcu. Suspendisse facilisis magna non cursus
+                    placerat. Vivamus varius lacus non massa varius varius. Nulla blandit leo nec purus mattis,
+                    eget tincidunt nunc condimentum. Phasellus suscipit, libero ac feugiat maximus, nibh nisi
+                    interdum purus, at mollis ante nunc vitae ligula.</p>
+                <p>Curabitur non gravida quam. Maecenas vitae dapibus leo. Aenean vestibulum eget nibh at
+                    fringilla.</p>
+                <p>Fusce feugiat, erat quis tincidunt feugiat, dui orci tempus tortor, eu venenatis leo lectus a
+                    odio. Nullam eu velit nec sapien aliquet accumsan. Fusce et elit ullamcorper, sollicitudin
+                    sapien et, finibus lorem. In nec vehicula libero. Etiam porttitor sagittis euismod. Quisque
+                    pharetra, diam sed volutpat egestas, enim arcu ornare enim, vitae gravida tortor risus at
+                    sapien.</p>
+            </div>
+        </li>
+        <li class="media my-4">
+            <div class="media-body">
+                <h2 class="mt-0 mb-1">Fulano</h2>
+                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras
+                purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi
+                vulputate fringilla. Donec lacinia congue felis in faucibus.
+            </div>
+            <img src="{% static 'img/avatar-02.jpg' %}" class="ml-3 sobre-avatar" alt="Avatar 2">
+        </li>
+        <li class="media">
+            <img src="{% static 'img/avatar-01.jpg' %}" class="mr-3 sobre-avatar" alt="Avatar 1">
+            <div class="media-body">
+                <h2 class="mt-0 mb-1">Caboclo</h2>
+                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras
+                purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi
+                vulputate fringilla. Donec lacinia congue felis in faucibus.
+            </div>
+        </li>
+    </ul>
+{% endblock %}
