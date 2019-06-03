@@ -46,10 +46,8 @@
 <hr>
 <form action="{% url 'list_divisoes' %}" method="POST">
     {% csrf_token %}
-    {% for radio in form.divisoes %}
-    <div class="form-check">
-    {{ radio }}
-    </div>
+    {% for divisao in divisoes %}
+    <p>{{ divisao }}</p>
     {% endfor %}
     <button class="btn btn-primary" type="submit">Próximo</button>
 </form>

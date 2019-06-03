@@ -45,6 +45,7 @@
 {% load static %}
  <h1>Escolha uma Seção</h1>
 <hr>
+<h2>Seções</h2>
 <form action="{% url 'list_divisoes' %}" method="POST">
     {% csrf_token %}
     {% for radio in form.secoes %}

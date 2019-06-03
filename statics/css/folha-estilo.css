@@ -220,6 +220,7 @@ body {
 @media (min-width: 768px) {
     [role="main"] {
         padding-top: 48px; /* Space for fixed navbar */
+        margin-bottom: 40px;
     }
 }
 
