@@ -41,36 +41,16 @@
 
 
 {% block main %}
-    {% load static %}
-     <h1>Escolha uma Divisão</h1>
-        <hr>
-        <form method="get" enctype="multipart/form-data" action="{% url 'list-divisoes' %}">
-
-            {% for secao in secoes_collected %}
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="divisao" id="divisaoCheck{{ divisao.id }}"
-                       value="{{ divisao.id }}" disabled>
-                <label class="form-check-label" for="divisaoCheck{{ divisao.id }}">
-                {{ divisao.descricao }}
-                </label>
-            </div>
-            {% endfor %}
-            <hr>
-            {% for secao in secoes_collected %}
-            <div class="form-check">
-                {% if road.secao_id == secao.id %}
-                <input class="form-check-input" type="radio" name="sessao" id="sessaoCheck{{ secao.id }}"
-                       value="{{ secao.id }}" disabled checked>
-                {% else %}
-                <input class="form-check-input" type="radio" name="sessao" id="sessaoCheck{{ secao.id }}"
-                       value="{{ secao.id }}" disabled>
-                {% endif %}
-                <label class="form-check-label" for="sessaoCheck{{ secao.id }}">
-                {{ secao.descricao }}
-                </label>
-            </div>
-            {% endfor %}
-
-            <button class="btn btn-primary" type="submit">Próximo</button>
-        </form>
+{% load static %}
+<h1>Escolha uma Divisão</h1>
+<hr>
+<form action="{% url 'list_divisoes' %}" method="POST">
+    {% csrf_token %}
+    {% for radio in form.divisoes %}
+    <div class="form-check">
+    {{ radio }}
+    </div>
+    {% endfor %}
+    <button class="btn btn-primary" type="submit">Próximo</button>
+</form>
 {% endblock %}

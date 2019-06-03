@@ -45,37 +45,8 @@
 {% load static %}
  <h1>Escolha uma Seção</h1>
 <hr>
-<!--<form method="POST" enctype="multipart/form-data" action="list_divisoes">
-    {% for secao in secoes_collected %}
-    <div class="form-check">
-        <input class="form-check-input" type="radio" name="sessao" id="sessaoCheck{{ secao.id }}"
-               value="{{ secao.id }}">
-        <label class="form-check-label" for="sessaoCheck{{ secao.id }}">
-        {{ secao.descricao }}
-        </label>
-    </div>
-    {% endfor %}
-    <button class="btn btn-primary" type="submit">Próximo</button>
-</form>-->
-<!--<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Seção</th>
-            <th scope="col"></th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for secao in secoes_collected %}
-        <tr>
-            <td>{{ secao.id }}</td>
-            <td>{{ secao.descricao }}</td>
-            <td><a class="btn btn-primary btn-xs"  href="./list_divisoes/{{secao.id}}/">Enviar</a></td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>-->
-<form action="{% url 'list_secoes' %}" method="POST">
+<form action="{% url 'list_divisoes' %}" method="POST">
+    {% csrf_token %}
     {% for radio in form.secoes %}
     <div class="form-check">
     {{ radio }}

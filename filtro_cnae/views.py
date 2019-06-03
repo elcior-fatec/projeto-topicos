@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import SearchedCNAE
 from .forms import Secoes, Divisoes
@@ -13,11 +13,6 @@ import os
 def get_classes_json():
     classes_json = requests.get(url='https://servicodados.ibge.gov.br/api/v2/cnae/classes')
     return classes_json
-
-
-def get_divisoes_json(secao_id):
-    divisoes_json = requests.get(url=f'https://servicodados.ibge.gov.br/api/v2/cnae/secoes/{secao_id}/divisoes')
-    return divisoes_json
 
 '''
 @login_required
@@ -50,5 +45,8 @@ def list_secoes(request):
 
 @login_required
 def list_divisoes(request):
-    form = Divisoes()
-    return render(request, 'list-secoes.html', {'form': form})
+    if request.POST is None:
+        return redirect('list_secoes')
+
+    form = Divisoes(secao=request.POST.get('secoes'))
+    return render(request, 'list-divisoes.html', {'form': form})
