@@ -43,6 +43,8 @@ def list_secoes(request):
 
 @login_required
 def list_divisoes(request):
+    if request.POST.get('secoes') is None:
+        return redirect('list_secoes')
     divisoes_collected = get_divisoes_json(request.POST.get('secoes'))
     divisoes = []
     for divisao in divisoes_collected:
@@ -57,6 +59,8 @@ def list_divisoes(request):
 
 @login_required
 def list_grupos(request):
+    if request.POST.get('divisao') is None:
+        return redirect('list_secoes')
     grupos_collected = get_grupos_json(request.POST.get('divisao'))
     grupos = []
     for grupo in grupos_collected:
@@ -70,6 +74,8 @@ def list_grupos(request):
 
 
 def list_classes(request):
+    if request.POST.get('grupo') is None:
+        return redirect('list_secoes')
     classes_collected = get_classes_json(request.POST.get('grupo'))
     classes = []
     for classe in classes_collected:

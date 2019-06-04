@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 
-{% block title %}Grupos CNAE{% endblock %}
+{% block title %}Deletar pesquisa CNAE{% endblock %}
 
 
 {% block nav %}
@@ -20,15 +20,15 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/sobre">Sobre o Projeto</a>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="/cnae/list-secoes">Fazer Pesquisa<span class="sr-only">(current)</span></a>
+                <li class="nav-item">
+                    <a class="nav-link" href="/cnae/list-secoes">Fazer Pesquisa</a>
                 </li>
-                <li class="nav-item dropdown boas-vindas">
+                <li class="nav-item dropdown boas-vindas active">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Seu Logon</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/perfil/pesquisas">
-                            <i class="fas fa-database"></i> Consultar Pesquisas
+                        <a class="dropdown-item active" href="/perfil/pesquisas">
+                            <i class="fas fa-database"></i> Consultar Pesquisas<span class="sr-only">(current)</span>
                         </a>
                         <a class="dropdown-item" href="#"><i class="fas fa-user-edit"></i> Editar Perfil</a>
                         <div class="dropdown-divider"></div>
@@ -44,26 +44,21 @@
 
 {% block main %}
 {% load static %}
-<h1>Escolha um Grupo</h1>
+<h1>Apagar pesquisa</h1>
 <hr>
-<h2>Grupos</h2>
-<form action="{% url 'list_classes' %}" method="POST">
+<div class="alert alert-danger" role="alert">
+    A pesquisa número {{ pesquisa.id }} será permanentemente apagada.<br>
+    Deseja continuar mesmo assim?
+</div>
+<form method="POST">
     {% csrf_token %}
-    {% for grupo in grupos %}
-    <div class="form-check">
-        <input class="form-check-input" type="radio" name="grupo"
-               id="grupo{{grupo.id}}" value="{{grupo.id}}">
-        <label class="form-check-label" for="grupo{{grupo.id}}">
-            {{grupo.descricao}}
-        </label>
-    </div>
-    {% endfor %}
-    <div class="mt-4 btn-group float-right" role="group" aria-label="Navegação de filtro">
+    {{ form }}
+    <div class="btn-group float-right">
         <button class="btn btn-secondary" type="button" onclick="window.history.back();">
              <span class="fas fa-chevron-circle-left"></span> Voltar
         </button>
-        <button class="btn btn-primary" type="submit">
-            Próximo <span class="fas fa-chevron-circle-right"></span>
+        <button class="btn btn-danger mx-auto" type="submit">
+            Apagar <span class="fas fa-trash-alt"></span>
         </button>
     </div>
 </form>

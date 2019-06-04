@@ -21,4 +21,8 @@ class SearchedCNAE(models.Model):
         self.save()
 
     def __str__(self):
-        return self.pk
+        return f'pesquisa nº {self.pk}'
+
+    class Meta:
+        verbose_name = "Histórico de pesquisas"
+        verbose_name_plural = "Históricos de pesquisas"

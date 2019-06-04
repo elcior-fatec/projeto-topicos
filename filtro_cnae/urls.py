@@ -8,4 +8,5 @@ urlpatterns = [
     path('list-divisoes/', list_divisoes, name="list_divisoes"),
     path('list-grupos/', list_grupos, name="list_grupos"),
     path('list-classes/', list_classes, name="list_classes"),
+    path('save-search/', list_classes, name="list_classes"),
 ]

@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+Detalhe da pesquisas {{ pesquisa.id }}
+{% endblock %}
+
+
+{% block nav %}
+    {% load static %}
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="#">
+            <img src="{% static 'img/logo-proj.png' %}" alt="Logo" class="nav-logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/sobre">Sobre o Projeto</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/cnae/list-secoes">Fazer Pesquisa</a>
+                </li>
+                <li class="nav-item dropdown boas-vindas active">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Seu Logon</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item active" href="/perfil/pesquisas">
+                            <i class="fas fa-database"></i> Consultar Pesquisas<span class="sr-only">(current)</span>
+                        </a>
+                        <a class="dropdown-item" href="#"><i class="fas fa-user-edit"></i> Editar Perfil</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Sair</a>
+                    </div>
+                </li>
+            </ul>
+            <p class="boas-vindas">Bem-vindo, {{user.username}} <i class="fas fa-user"></i></p>
+        </div>
+    </nav>
+{% endblock %}
+
+
+{% block main %}
+{% load static %}
+<h1>Detalhe da pesquisas <span class="badge badge-dark">número {{ pesquisa.id }}</span></h1>
+<hr>
+<ul class="list-group">
+    <li class="list-group-item">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">Seção</h5>
+        </div>
+        <p class="mb-1">
+            <small>{{ pesquisa.secao_id }}: </small>
+            {{ pesquisa.secao_descricao }}
+        </p>
+    </li>
+    <li class="list-group-item">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">Divisão</h5>
+        </div>
+        <p class="mb-1">
+            <small>{{ pesquisa.divisao_id }}: </small>
+            {{ pesquisa.divisao_descricao }}
+        </p>
+    </li>
+    <li class="list-group-item">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">Grupo</h5>
+        </div>
+        <p class="mb-1">
+            <small>{{ pesquisa.grupo_id }}: </small>
+            {{ pesquisa.grupo_descricao }}
+        </p>
+    </li>
+    <li class="list-group-item">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">Classe</h5>
+        </div>
+        <p class="mb-1">
+            <small>{{ pesquisa.classe_id }}: </small>
+            {{ pesquisa.classe_descricao }}
+        </p>
+        <p class="mb-1">
+            <small>Descrição: </small>
+            {{ pesquisa.classe_observacoes }}
+        </p>
+    </li>
+    <li class="list-group-item">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">Data de publicação:</h5>
+        </div>
+        <p class="mb-1">{{ pesquisa.published_date }}</p>
+    </li>
+    <li class="list-group-item">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">Status:</h5>
+        </div>
+        <p>{{ pesquisa.rel_ativo }}</p>
+    </li>
+</ul>
+<div class="mt-4 btn-group float-right" role="group" aria-label="Navegação de filtro">
+    <button class="btn btn-secondary" type="button" onclick="window.history.back();">
+        <span class="fas fa-chevron-circle-left"></span> Voltar
+    </button>
+</div>
+{% endblock %}

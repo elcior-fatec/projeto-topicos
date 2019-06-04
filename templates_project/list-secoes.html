@@ -28,7 +28,9 @@
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Seu Logon</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#"><i class="fas fa-database"></i> Consultar Buscas</a>
+                        <a class="dropdown-item" href="/perfil/pesquisas">
+                            <i class="fas fa-database"></i> Consultar Pesquisas
+                        </a>
                         <a class="dropdown-item" href="#"><i class="fas fa-user-edit"></i> Editar Perfil</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Sair</a>
@@ -53,6 +55,8 @@
     {{ radio }}
     </div>
     {% endfor %}
-    <button class="mt-4 btn btn-primary  float-right" type="submit">Próximo</button>
+    <button class="mt-4 btn btn-primary  float-right" type="submit">
+        Próximo <span class="fas fa-chevron-circle-right"></span>
+    </button>
 </form>
 {% endblock %}
