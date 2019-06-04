@@ -30,9 +30,8 @@ def list_secoes(request):
 
 @login_required
 def list_divisoes(request):
-    # form = Divisoes(request.POST)
     divisoes_collected = get_divisoes_json(request.POST.get('secoes'))
     divisoes = []
     for divisao in divisoes_collected:
-        divisoes.append((f"{divisao['id']}", f"{divisao['descricao']}"))
+        divisoes.append({'id': f"{divisao['id']}", 'discricao': f"{divisao['descricao']}"})
     return render(request, 'list-divisoes.html', {'divisoes': divisoes})
