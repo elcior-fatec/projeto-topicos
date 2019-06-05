@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 import datetime
 from .models import SearchedCNAE
 from .forms import Secoes, SaveSearchesForm
+from django.contrib.auth import logout
 
 import requests
 import os
@@ -140,21 +141,24 @@ def save_search_final(request):
     form = SaveSearchesForm(request.POST)
 
     form.id_user = request.user.id
-    form.secao_id = classe_c['grupo']['divisao']['secao']['id'],
-    form.secao_descricao = classe_c['grupo']['divisao']['secao']['descricao'],
-    form.divisao_id = classe_c['grupo']['divisao']['id'],
-    form.divisao_descricao = classe_c['grupo']['divisao']['descricao'],
-    form.grupo_id = classe_c['grupo']['id'],
-    form.grupo_descricao = classe_c['grupo']['descricao'],
-    form.classe_id = classe_c['id'],
-    form.classe_descricao = classe_c['descricao'],
-    form.classe_observacoes = classe_c['observacoes'][0],
-    form.published_date = data_agora,
-    form.rel_ativo = True,
+    form.secao_id = classe_c['grupo']['divisao']['secao']['id']
+    form.secao_descricao = classe_c['grupo']['divisao']['secao']['descricao']
+    form.divisao_id = classe_c['grupo']['divisao']['id']
+    form.divisao_descricao = classe_c['grupo']['divisao']['descricao']
+    form.grupo_id = classe_c['grupo']['id']
+    form.grupo_descricao = classe_c['grupo']['descricao']
+    form.classe_id = classe_c['id']
+    form.classe_descricao = classe_c['descricao']
+    form.classe_observacoes = classe_c['observacoes'][0]
+    form.published_date = data_agora
+    form.rel_ativo = True
 
     if form.is_valid():
         form.save()
-    else:
-        return HttpResponse(form)
 
-    return redirect('list_secoes')
+    return redirect('pesquisa_user')
+
+@login_required
+def logout_sys(request):
+    logout(request)
+    return redirect('home')

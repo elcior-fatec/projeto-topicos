@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from filtro_cnae.models import SearchedCNAE
+from filtro_cnae.forms import SaveSearchesForm
+from filtro_cnae.urls import list_secoes
 
 
 @login_required
@@ -22,3 +24,13 @@ def deletar_pesquisa(request, id):
 def detalhar_pesquisa(request, id):
     pesquisa = get_object_or_404(SearchedCNAE, pk=id)
     return render(request, 'detalhe-pesquisa.html', {'pesquisa': pesquisa})
+
+
+@login_required
+def desabilitar_item_pesquisa(request, id):
+    itens = get_object_or_404(SearchedCNAE, pk=id)
+    form = SaveSearchesForm(request.POST or None, instance=itens)
+    if form.is_valid():
+        form.save()
+        return redirect('list_secoes')
+    return render(request, 'desabilita-item.html', {'form': form})

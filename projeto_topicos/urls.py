@@ -23,10 +23,10 @@ from pesquisas import urls as pesquisas_urls
 
 
 urlpatterns = [
+    path('', include(cnae_urls)),
     path('sobre/', sobre, name='sobre'),
     path('admin/', admin.site.urls),
     path('login/', auth_views.LoginView.as_view(), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('cnae/', include(cnae_urls)),
     path('perfil/', include(pesquisas_urls)),
 ]
