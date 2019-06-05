@@ -102,25 +102,23 @@ def save_search(request):
     classe_c = get_final_classe_json(request.POST.get('classe'))
     data_agora = datetime.datetime.now()
 
-    if request.POST['classe'] is None:
-        form = SaveSearchesForm(request.POST)
-    else:
-        form = SaveSearchesForm(
-            initial={
-                'id_user': f'{request.user.id}',
-                'secao_id': f"{classe_c['grupo']['divisao']['secao']['id']}",
-                'secao_descricao': f"{classe_c['grupo']['divisao']['secao']['descricao']}",
-                'divisao_id': f"{classe_c['grupo']['divisao']['id']}",
-                'divisao_descricao': f"{classe_c['grupo']['divisao']['descricao']}",
-                'grupo_id': f"{classe_c['grupo']['id']}",
-                'grupo_descricao': f"{classe_c['grupo']['descricao']}",
-                'classe_id': f"{classe_c['id']}",
-                'classe_descricao': f"{classe_c['descricao']}",
-                'classe_observacoes': f"{classe_c['observacoes'][0]}",
-                'published_date': f"{data_agora}",
-                'rel_ativo': True,
-            }
-        )
+    form = SaveSearchesForm(
+        initial={
+            'id_user': f'{request.user.id}',
+            'secao_id': f"{classe_c['grupo']['divisao']['secao']['id']}",
+            'secao_descricao': f"{classe_c['grupo']['divisao']['secao']['descricao']}",
+            'divisao_id': f"{classe_c['grupo']['divisao']['id']}",
+            'divisao_descricao': f"{classe_c['grupo']['divisao']['descricao']}",
+            'grupo_id': f"{classe_c['grupo']['id']}",
+            'grupo_descricao': f"{classe_c['grupo']['descricao']}",
+            'classe_id': f"{classe_c['id']}",
+            'classe_descricao': f"{classe_c['descricao']}",
+            'classe_observacoes': f"{classe_c['observacoes'][0]}",
+            'published_date': f"{data_agora}",
+            'rel_ativo': True,
+        }
+    )
+    form.form_read_only = True
 
     if form.is_valid():
         form.save()
