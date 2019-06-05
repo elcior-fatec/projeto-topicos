@@ -1,4 +1,6 @@
 from django import forms
+from django.forms import ModelForm
+from .models import SearchedCNAE
 import requests
 
 
@@ -37,3 +39,22 @@ class Divisoes(forms.Form):
             DIVISOES.append((f"{divisao['id']}", f"{divisao['descricao']}"))
 
         self.divisoes = forms.ChoiceField(choices=DIVISOES, widget=forms.RadioSelect)
+
+
+class SaveSearchesForm(ModelForm):
+    class Meta:
+        model = SearchedCNAE
+        fields = [
+            'id_user',
+            'secao_id',
+            'secao_descricao',
+            'divisao_id',
+            'divisao_descricao',
+            'grupo_id',
+            'grupo_descricao',
+            'classe_id',
+            'classe_descricao',
+            'classe_observacoes',
+            'published_date',
+            'rel_ativo',
+        ]

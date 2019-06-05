@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import SearchedCNAE
-from .forms import Secoes, Divisoes
+from .forms import Secoes, SaveSearchesForm
 
 import requests
 import os
@@ -73,6 +73,7 @@ def list_grupos(request):
     return render(request, 'list-grupos.html', {'grupos': grupos})
 
 
+@login_required
 def list_classes(request):
     if request.POST.get('grupo') is None:
         return redirect('list_secoes')
@@ -87,3 +88,12 @@ def list_classes(request):
             }
         )
     return render(request, 'list-classes.html', {'classes': classes})
+
+
+@login_required
+def save_search(request):
+    form = SaveSearchesForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('list_secoes')
+    return render(request, 'salvar-pesquisa.html', {'form': form})

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 
-{% block title %}Classes CNAE{% endblock %}
+{% block title %}Salvar pesquisa CNAE{% endblock %}
 
 
 {% block nav %}
@@ -44,31 +44,18 @@
 
 {% block main %}
 {% load static %}
-<h1>Escolha uma Classe</h1>
+{% load bootstrap %}
+<h1>Salvar pesquisa no CNAE</h1>
 <hr>
-<h2>Classes</h2>
 <form action="{% url 'save_search' %}" method="POST">
     {% csrf_token %}
-    {% for classe in classes %}
-    <div class="form-check">
-        <input class="form-check-input" type="radio" name="classe"
-               id="classe{{classe.id}}" value="{{classe.id}}">
-        <label class="form-check-label" for="classe{{classe.id}}">
-            <span class="classe-descricoes">{{classe.descricao}}: </span><br>
-            <ul>
-            {% for obs in classe.observacoes%}
-                <li class="classe-observacoes">{{obs}}</li>
-            {% endfor %}
-            </ul>
-        </label>
-    </div>
-    {% endfor %}
+    {{ form|bootstrap }}
     <div class="mt-4 btn-group float-right" role="group" aria-label="Navegação de filtro">
         <button class="btn btn-secondary" type="button" onclick="window.history.back();">
              <span class="fas fa-chevron-circle-left"></span> Voltar
         </button>
-        <button class="btn btn-primary" type="submit">
-            Próximo <span class="fas fa-chevron-circle-right"></span>
+        <button class="btn btn-success" type="submit">
+            Salvar <span class="fas fa-check-circle"></span>
         </button>
     </div>
 </form>
