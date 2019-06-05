@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+import datetime
 from .models import SearchedCNAE
 from .forms import Secoes, SaveSearchesForm
 
@@ -30,6 +31,12 @@ def get_classes_json(grupos_id):
     classes_json = requests.get(url)
     classes_collected = classes_json.json()
     return classes_collected
+
+def get_final_classe_json(classe_id):
+    url = f'https://servicodados.ibge.gov.br/api/v2/cnae/classes/{classe_id}'
+    classe_json = requests.get(url)
+    classe_collected = classe_json.json()
+    return classe_collected
 
 
 '''
@@ -92,8 +99,31 @@ def list_classes(request):
 
 @login_required
 def save_search(request):
-    form = SaveSearchesForm(request.POST or None)
+    classe_c = get_final_classe_json(request.POST.get('classe'))
+    data_agora = datetime.datetime.now()
+
+    if request.POST['classe'] is None:
+        form = SaveSearchesForm(request.POST)
+    else:
+        form = SaveSearchesForm(
+            initial={
+                'id_user': f'{request.user.id}',
+                'secao_id': f"{classe_c['grupo']['divisao']['secao']['id']}",
+                'secao_descricao': f"{classe_c['grupo']['divisao']['secao']['descricao']}",
+                'divisao_id': f"{classe_c['grupo']['divisao']['id']}",
+                'divisao_descricao': f"{classe_c['grupo']['divisao']['descricao']}",
+                'grupo_id': f"{classe_c['grupo']['id']}",
+                'grupo_descricao': f"{classe_c['grupo']['descricao']}",
+                'classe_id': f"{classe_c['id']}",
+                'classe_descricao': f"{classe_c['descricao']}",
+                'classe_observacoes': f"{classe_c['observacoes'][0]}",
+                'published_date': f"{data_agora}",
+                'rel_ativo': True,
+            }
+        )
+
     if form.is_valid():
         form.save()
         return redirect('list_secoes')
+
     return render(request, 'salvar-pesquisa.html', {'form': form})
