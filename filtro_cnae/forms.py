@@ -1,5 +1,5 @@
 from django import forms
-from django.forms import ModelForm
+from django.forms import ModelForm, CharField
 from .models import SearchedCNAE
 import requests
 
@@ -44,7 +44,7 @@ class Divisoes(forms.Form):
 class SaveSearchesForm(ModelForm):
     class Meta:
         model = SearchedCNAE
-        fields = [
+        fields = (
             'id_user',
             'secao_id',
             'secao_descricao',
@@ -57,4 +57,4 @@ class SaveSearchesForm(ModelForm):
             'classe_observacoes',
             'published_date',
             'rel_ativo',
-        ]
+        )

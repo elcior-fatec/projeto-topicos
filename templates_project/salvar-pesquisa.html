@@ -47,7 +47,7 @@
 {% load bootstrap %}
 <h1>Salvar pesquisa no CNAE</h1>
 <hr>
-<form action="{% url 'save_search' %}" method="POST">
+<form action="{% url 'save_search_final' %}" method="POST">
     {% csrf_token %}
     {{ form|bootstrap }}
     <div class="mt-4 btn-group float-right" role="group" aria-label="Navegação de filtro">

@@ -101,27 +101,60 @@ def list_classes(request):
 def save_search(request):
     classe_c = get_final_classe_json(request.POST.get('classe'))
     data_agora = datetime.datetime.now()
-
     form = SaveSearchesForm(
         initial={
-            'id_user': f'{request.user.id}',
-            'secao_id': f"{classe_c['grupo']['divisao']['secao']['id']}",
-            'secao_descricao': f"{classe_c['grupo']['divisao']['secao']['descricao']}",
-            'divisao_id': f"{classe_c['grupo']['divisao']['id']}",
-            'divisao_descricao': f"{classe_c['grupo']['divisao']['descricao']}",
-            'grupo_id': f"{classe_c['grupo']['id']}",
-            'grupo_descricao': f"{classe_c['grupo']['descricao']}",
-            'classe_id': f"{classe_c['id']}",
-            'classe_descricao': f"{classe_c['descricao']}",
-            'classe_observacoes': f"{classe_c['observacoes'][0]}",
-            'published_date': f"{data_agora}",
+            'id_user': request.user.id,
+            'secao_id': classe_c['grupo']['divisao']['secao']['id'],
+            'secao_descricao': classe_c['grupo']['divisao']['secao']['descricao'],
+            'divisao_id': classe_c['grupo']['divisao']['id'],
+            'divisao_descricao': classe_c['grupo']['divisao']['descricao'],
+            'grupo_id': classe_c['grupo']['id'],
+            'grupo_descricao': classe_c['grupo']['descricao'],
+            'classe_id': classe_c['id'],
+            'classe_descricao': classe_c['descricao'],
+            'classe_observacoes': classe_c['observacoes'][0],
+            'published_date': data_agora,
             'rel_ativo': True,
         }
     )
-    form.form_read_only = True
+    form.fields['id_user'].widget.attrs['readonly'] = True
+    form.fields['secao_id'].widget.attrs['readonly'] = True
+    form.fields['secao_descricao'].widget.attrs['readonly'] = True
+    form.fields['divisao_id'].widget.attrs['readonly'] = True
+    form.fields['divisao_descricao'].widget.attrs['readonly'] = True
+    form.fields['grupo_id'].widget.attrs['readonly'] = True
+    form.fields['grupo_descricao'].widget.attrs['readonly'] = True
+    form.fields['classe_id'].widget.attrs['readonly'] = True
+    form.fields['classe_descricao'].widget.attrs['readonly'] = True
+    form.fields['classe_observacoes'].widget.attrs['readonly'] = True
+    form.fields['published_date'].widget.attrs['readonly'] = True
+    form.fields['rel_ativo'].widget.attrs['readonly'] = True
+
+    return render(request, 'salvar-pesquisa.html', {'form': form})
+
+
+@login_required
+def save_search_final(request):
+    classe_c = get_final_classe_json(request.POST.get('classe_id'))
+    data_agora = datetime.datetime.now()
+    form = SaveSearchesForm(request.POST)
+
+    form.id_user = request.user.id
+    form.secao_id = classe_c['grupo']['divisao']['secao']['id'],
+    form.secao_descricao = classe_c['grupo']['divisao']['secao']['descricao'],
+    form.divisao_id = classe_c['grupo']['divisao']['id'],
+    form.divisao_descricao = classe_c['grupo']['divisao']['descricao'],
+    form.grupo_id = classe_c['grupo']['id'],
+    form.grupo_descricao = classe_c['grupo']['descricao'],
+    form.classe_id = classe_c['id'],
+    form.classe_descricao = classe_c['descricao'],
+    form.classe_observacoes = classe_c['observacoes'][0],
+    form.published_date = data_agora,
+    form.rel_ativo = True,
 
     if form.is_valid():
         form.save()
-        return redirect('list_secoes')
+    else:
+        return HttpResponse(form)
 
-    return render(request, 'salvar-pesquisa.html', {'form': form})
+    return redirect('list_secoes')
