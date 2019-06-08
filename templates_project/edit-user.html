@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 
-{% block title %}Alterar status do item{% endblock %}
+{% block title %}Editar Perfil{% endblock %}
 
 
 {% block nav %}
@@ -27,10 +27,12 @@
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Seu Logon</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item active" href="/perfil/pesquisas">
+                        <a class="dropdown-item" href="/perfil/pesquisas">
                             <i class="fas fa-database"></i> Consultar Pesquisas<span class="sr-only">(current)</span>
                         </a>
-                        <a class="dropdown-item" href="/edit/user"><i class="fas fa-user-edit"></i> Editar Perfil</a>
+                        <a class="dropdown-item active" href="/edit/user">
+                            <i class="fas fa-user-edit"></i> Editar Perfil<span class="sr-only">(current)</span>
+                        </a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Sair</a>
                     </div>
@@ -44,14 +46,20 @@
 
 {% block main %}
 {% load static %}
-<h1>Alterar status do item</h1>
+{% load bootstrap %}
+<h1>Editar o Perfil</h1>
+<h3>Usuário: {{user.username}}</h3>
 <hr>
-<ul>
-    {% for item in itens %}
-    <li>
-        {{ item.id }} - {{ pesquisa.secao_descricao }}
-        <a href="{% url 'desabilitar_item_pesquisa' item.id %}"> Alterar</a>
-    </li>
-    {% endfor %}
-</ul>
+<form method="POST">
+    {% csrf_token %}
+    {{ form|bootstrap }}
+    <div class="mt-4 btn-group float-right" role="group" aria-label="Navegação de filtro">
+        <button class="btn btn-secondary" type="button" onclick="window.history.back();">
+             <span class="fas fa-chevron-circle-left"></span> Voltar
+        </button>
+        <button class="btn btn-success" type="submit">
+            Salvar <span class="fas fa-check-circle"></span>
+        </button>
+    </div>
+</form>
 {% endblock %}

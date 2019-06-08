@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'bootstrapform',
     'sobre_projeto',
     'filtro_cnae',
+    'edit_users',
 ]
 
 MIDDLEWARE = [

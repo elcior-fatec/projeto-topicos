@@ -20,6 +20,7 @@ from django.contrib.auth import views as auth_views
 from sobre_projeto.views import sobre
 from filtro_cnae import urls as cnae_urls
 from pesquisas import urls as pesquisas_urls
+from edit_users import urls as edit_users_urls
 
 
 urlpatterns = [
@@ -29,4 +30,5 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(), name='login'),
     path('cnae/', include(cnae_urls)),
     path('perfil/', include(pesquisas_urls)),
+    path('edit/', include(edit_users_urls)),
 ]
