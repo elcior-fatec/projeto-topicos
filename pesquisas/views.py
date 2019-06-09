@@ -4,6 +4,8 @@ from django.contrib.auth.decorators import login_required
 from filtro_cnae.models import SearchedCNAE
 from filtro_cnae.forms import SaveSearchesForm
 from filtro_cnae.urls import list_secoes
+from datetime import datetime as dtime
+import zipfile as zip
 import json
 
 
@@ -55,12 +57,17 @@ def export_json(request):
                 'classe_id': pesquisa.classe_id,
                 'classe_descricao': pesquisa.classe_descricao,
                 'classe_observacoes': pesquisa.classe_observacoes,
-                # 'published_date': pesquisa.published_date,
+                'published_date': pesquisa.published_date.strftime('%Y-%m-%dT%H:%M:%S.%f'),
                 'rel_ativo': pesquisa.rel_ativo,
             }
         )
-    f = open('output_json/output-json.json', 'w')
-    json.dump(dataset, f, indent=2)
-    f.close()
+    file_name = f'output_json/output-json.json'
+    fjson = open(file_name, 'w')
+    json.dump(dataset, fjson, ensure_ascii=False, indent=2)
+    fjson.close()
+
+    zf = zip.ZipFile(f'output_json/output-json-{dtime.now().strftime("%Y%m%d%H%M%S%f")}.zip', 'w')
+    zf.write('output_json/output-json.json')
+    zf.close()
 
     return redirect('/')

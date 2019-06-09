@@ -6,4 +6,4 @@
 .vEnv 
 *pyc 
 .env
-output/*
+/output_json/*
