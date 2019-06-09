@@ -1,8 +1,10 @@
+from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from filtro_cnae.models import SearchedCNAE
 from filtro_cnae.forms import SaveSearchesForm
 from filtro_cnae.urls import list_secoes
+import json
 
 
 @login_required
@@ -34,3 +36,31 @@ def desabilitar_item_pesquisa(request, id):
         form.save()
         return redirect('list_secoes')
     return render(request, 'desabilita-item.html', {'form': form})
+
+
+@login_required
+def export_json(request):
+    pesquisas = SearchedCNAE.objects.filter(id_user=request.user.id)
+    dataset = []
+
+    for pesquisa in pesquisas:
+        dataset.append(
+            {
+                'secao_id': f'{pesquisa.secao_id}',
+                'secao_descricao': pesquisa.secao_descricao,
+                'divisao_id': pesquisa.divisao_id,
+                'divisao_descricao': pesquisa.divisao_descricao,
+                'grupo_id': pesquisa.grupo_id,
+                'grupo_descricao': pesquisa.grupo_descricao,
+                'classe_id': pesquisa.classe_id,
+                'classe_descricao': pesquisa.classe_descricao,
+                'classe_observacoes': pesquisa.classe_observacoes,
+                # 'published_date': pesquisa.published_date,
+                'rel_ativo': pesquisa.rel_ativo,
+            }
+        )
+    f = open('output_json/output-json.json', 'w')
+    json.dump(dataset, f, indent=2)
+    f.close()
+
+    return redirect('/')

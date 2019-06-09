@@ -45,6 +45,7 @@
 {% block main %}
 {% load static %}
 <h1>Suas pesquisas no CNAE</h1>
+<a href="{% url 'export_json' %}" class="btn btn-secondary">Exportar json</a>
 <hr>
 <div class="table-responsive">
     <table class="table table-striped table-hover table-bordered text-left">
