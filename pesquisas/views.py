@@ -61,13 +61,15 @@ def export_json(request):
                 'rel_ativo': pesquisa.rel_ativo,
             }
         )
-    file_name = f'output_json/output-json.json'
+    file_name = f'output_json/output-json-{request.user.username}.json'
     fjson = open(file_name, 'w')
     json.dump(dataset, fjson, ensure_ascii=False, indent=2)
     fjson.close()
 
-    zf = zip.ZipFile(f'output_json/output-json-{dtime.now().strftime("%Y%m%d%H%M%S%f")}.zip', 'w')
-    zf.write('output_json/output-json.json')
+    zf = zip.ZipFile(
+        f'output_json/output-json-{dtime.now().strftime("%Y%m%d%H%M%S%f")}-{request.user.username}.zip', 'w'
+    )
+    zf.write(f'output_json/output-json-{request.user.username}.json')
     zf.close()
 
     return redirect('/')
