@@ -1,13 +1,12 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-import datetime
-from .models import SearchedCNAE
+from django import forms
 from .forms import Secoes, SaveSearchesForm
 from django.contrib.auth import logout
-
+import datetime
 import requests
-import os
+
 
 
 '''
@@ -32,6 +31,7 @@ def get_classes_json(grupos_id):
     classes_json = requests.get(url)
     classes_collected = classes_json.json()
     return classes_collected
+
 
 def get_final_classe_json(classe_id):
     url = f'https://servicodados.ibge.gov.br/api/v2/cnae/classes/{classe_id}'
@@ -118,6 +118,7 @@ def save_search(request):
             'rel_ativo': True,
         }
     )
+    form.fields['id_user'] = forms.CharField()
     form.fields['id_user'].widget.attrs['readonly'] = True
     form.fields['secao_id'].widget.attrs['readonly'] = True
     form.fields['secao_descricao'].widget.attrs['readonly'] = True
@@ -129,6 +130,7 @@ def save_search(request):
     form.fields['classe_descricao'].widget.attrs['readonly'] = True
     form.fields['classe_observacoes'].widget.attrs['readonly'] = True
     form.fields['published_date'].widget.attrs['readonly'] = True
+    form.fields['rel_ativo'] = forms.CharField()
     form.fields['rel_ativo'].widget.attrs['readonly'] = True
 
     return render(request, 'salvar-pesquisa.html', {'form': form})
@@ -157,6 +159,7 @@ def save_search_final(request):
         form.save()
 
     return redirect('pesquisa_user')
+
 
 @login_required
 def logout_sys(request):

@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Alterar Senha{% endblock %}
+
+
+{% block nav %}
+    {% load static %}
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="#">
+            <img src="{% static 'img/logo-proj.png' %}" alt="Logo" class="nav-logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/sobre">Sobre o Projeto</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/cnae/list-secoes">Fazer Pesquisa</a>
+                </li>
+                <li class="nav-item dropdown boas-vindas active">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Seu Logon</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/perfil/pesquisas">
+                            <i class="fas fa-database"></i> Consultar Pesquisas<span class="sr-only">(current)</span>
+                        </a>
+                        <a class="dropdown-item active" href="/edit/user">
+                            <i class="fas fa-user-edit"></i> Editar Perfil<span class="sr-only">(current)</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Sair</a>
+                    </div>
+                </li>
+            </ul>
+            <p class="boas-vindas">Bem-vindo, {{user.username}} <i class="fas fa-user"></i></p>
+        </div>
+    </nav>
+{% endblock %}
+
+
+{% block main %}
+{% load static %}
+{% load bootstrap %}
+<h1>Alterar Senha</h1>
+<h3>Usuário: {{user.username}}</h3>
+<hr>
+<form action="{% url 'change_pass' %}" method="POST">
+    {% csrf_token %}
+    {{ form|bootstrap }}
+    <div class="mt-4 btn-group float-right" role="group" aria-label="Navegação de filtro">
+        <button class="btn btn-secondary" type="button" onclick="window.history.back();">
+             <span class="fas fa-chevron-circle-left"></span> Voltar
+        </button>
+        <button class="btn btn-success" type="submit">
+            Salvar <span class="fas fa-check-circle"></span>
+        </button>
+    </div>
+</form>
+{% endblock %}
