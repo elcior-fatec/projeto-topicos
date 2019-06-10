@@ -1,3 +1,4 @@
+#!/usr/bin/python3.6
 from django import forms
 from django.forms import ModelForm, CharField
 from .models import SearchedCNAE

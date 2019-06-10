@@ -1,3 +1,4 @@
+#!/usr/bin/python3.6
 from django.db import models
 from django.utils import timezone
 

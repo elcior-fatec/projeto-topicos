@@ -1,3 +1,4 @@
+#!/usr/bin/python3.6
 from django.urls import path
 from .views import edit_user, new_user, change_pass
 
