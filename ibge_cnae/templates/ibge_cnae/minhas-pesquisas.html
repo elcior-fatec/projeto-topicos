@@ -46,50 +46,74 @@
 
 {% block main %}
 {% load static %}
-<h1>Suas pesquisas no CNAE</h1>
-<a href="{% url 'export_json' %}" class="btn btn-secondary">
-    Exportar json <span class="fas fa-file-export"></span>
-</a>
-<hr>
-<div class="table-responsive">
-    <table class="table table-striped table-hover table-bordered text-left">
-        <thead class="thead-dark">
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Data</th>
-                <th scope="col">Seção</th>
-                <th scope="col">Divisão</th>
-                <th scope="col">Grupo</th>
-                <th scope="col">Classe</th>
-                <!--<th scope="col">Descrição</th>-->
-                <th scope="col">Ação</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for pesquisa in pesquisas %}
-            {% if pesquisa.rel_ativo %}
-            <tr>
-                <td>{{ pesquisa.id }}</td>
-                <td>{{ pesquisa.published_date|date:'d/m/Y H:i' }}</td>
-                <td>{{ pesquisa.secao_descricao }}</td>
-                <td>{{ pesquisa.divisao_descricao }}</td>
-                <td>{{ pesquisa.grupo_descricao }}</td>
-                <td>{{ pesquisa.classe_descricao }}</td>
-                <!--<td>{{ pesquisa.classe_observacoes }}</td>-->
-                <td>
-                    <div class="btn-group-vertical">
-                        <a href="{% url 'detalhar_pesquisa' pesquisa.id %}" class="btn btn-info">
-                            <span class="fas fa-info-circle"></span> Detalhes
-                        </a>
-                        <a href="{% url 'deletar_pesquisa' pesquisa.id %}" class="btn btn-warning">
-                            <span class="fas fa-trash-alt"></span> Apagar
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title">Suas pesquisas no CNAE</h1>
+                    {% if pesquisas|length > 0 %}
+                    <p class="card-text">
+                        Tabeça com as pesquisas <code>CNAE</code> salvas.
+                    </p>
+                    <hr>
+                    <a href="{% url 'export_json' %}" class="btn btn-secondary">
+                        Exportar json <span class="fas fa-file-export"></span>
+                    </a>
+                    <hr>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered text-left">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Data</th>
+                                    <th scope="col">Seção</th>
+                                    <th scope="col">Divisão</th>
+                                    <th scope="col">Grupo</th>
+                                    <th scope="col">Classe</th>
+                                    <th scope="col">Ação</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for pesquisa in pesquisas %}
+                                {% if pesquisa.rel_ativo %}
+                                <tr>
+                                    <td>{{ pesquisa.id }}</td>
+                                    <td>{{ pesquisa.published_date|date:'d/m/Y H:i' }}</td>
+                                    <td>{{ pesquisa.secao_descricao }}</td>
+                                    <td>{{ pesquisa.divisao_descricao }}</td>
+                                    <td>{{ pesquisa.grupo_descricao }}</td>
+                                    <td>{{ pesquisa.classe_descricao }}</td>
+                                    <td>
+                                        <div class="btn-group-vertical">
+                                            <a href="{% url 'detalhar_pesquisa' pesquisa.id %}" class="btn btn-info">
+                                                <span class="fas fa-info-circle"></span> Detalhes
+                                            </a>
+                                            <a href="{% url 'deletar_pesquisa' pesquisa.id %}" class="btn btn-warning">
+                                                <span class="fas fa-trash-alt"></span> Apagar
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endif %}
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <div class="text-center mt-5 mb-5 jumbotron">
+                        <h5>Nenhuma pesquisa <code>CNAE</code> salva para este usuário.</h5>
+                    </div>
+                    {% endif %}
+                    <hr>
+                    <div class="text-right">
+                        <a href="{% url 'list_secoes_cnae' %}" class="btn btn-primary">
+                            Realizar pesquisa CNAE
                         </a>
                     </div>
-                </td>
-            </tr>
-            {% endif %}
-            {% endfor %}
-        </tbody>
-    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
