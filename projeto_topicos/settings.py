@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'sobre_projeto',
     'filtro_cnae',
     'edit_users',
+    'ibge_cnae',
 ]
 
 MIDDLEWARE = [

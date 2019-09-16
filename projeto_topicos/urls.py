@@ -22,9 +22,13 @@ from filtro_cnae import urls as cnae_urls
 from pesquisas import urls as pesquisas_urls
 from edit_users import urls as edit_users_urls
 
+from ibge_cnae import urls as ibge_cnae_urls
+
 
 urlpatterns = [
     path('', include(cnae_urls)),
+    path('ibge_cnae/', include(ibge_cnae_urls)),
+
     path('sobre/', sobre, name='sobre'),
     path('admin/', admin.site.urls),
     path('login/', auth_views.LoginView.as_view(), name='login'),
