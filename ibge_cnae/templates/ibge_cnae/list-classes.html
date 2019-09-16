@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+
+{% block title %}IBGE CNAE: Classes{% endblock %}
+
+
+{% block nav %}
+    {% load static %}
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="#">
+            <img src="{% static 'img/logo-ibge-branco.png' %}" alt="Logo" class="nav-logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/sobre">Sobre o Projeto</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'list_secoes_cnae' %}">
+                        Fazer Pesquisa<span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item dropdown boas-vindas">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Seu Logon</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'minhas_pesquisas_cnae' %}">
+                            <i class="fas fa-database"></i> Consultar Pesquisas
+                        </a>
+                        <a class="dropdown-item" href="/edit/user"><i class="fas fa-user-edit"></i> Editar Perfil</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Sair</a>
+                    </div>
+                </li>
+            </ul>
+            <p class="boas-vindas">Bem-vindo, {{user.username}} <i class="fas fa-user"></i></p>
+        </div>
+    </nav>
+{% endblock %}
+
+
+{% block main %}
+    {% load static %}
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title">Classes</h1>
+                    <p class="card-text">
+                        Selecione uma das opções para filtrar a Classes da <code>CNAE</code>.
+                    </p>
+                    <hr>
+                   <form action="{% url 'completa_busca_cnae' %}" method="POST">
+                        {% csrf_token %}
+                        {% for classe in classes %}
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="classe"
+                                   id="classe{{classe.id}}" value="{{classe.id}}">
+                            <label class="form-check-label" for="classe{{classe.id}}">
+                                <span class="classe-descricoes">{{classe.descricao}}: </span><br>
+                                <ul>
+                                {% for obs in classe.observacoes%}
+                                    <li class="classe-observacoes">{{obs}}</li>
+                                {% endfor %}
+                                </ul>
+                            </label>
+                        </div>
+                        {% endfor %}
+                        <div class="mt-4 btn-group float-right" role="group" aria-label="Navegação de filtro">
+                            <button class="btn btn-secondary" type="button" onclick="window.history.back();">
+                                 <span class="fas fa-chevron-circle-left"></span> Voltar
+                            </button>
+                            <button class="btn btn-primary" type="submit">
+                                Próximo <span class="fas fa-chevron-circle-right"></span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

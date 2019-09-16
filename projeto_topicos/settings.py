@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bootstrapform',
+    'widget_tweaks',
     'sobre_projeto',
     'filtro_cnae',
     'edit_users',

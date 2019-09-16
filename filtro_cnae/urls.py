@@ -1,5 +1,13 @@
 from django.urls import path
-from .views import list_secoes, list_divisoes, list_grupos, list_classes, save_search, save_search_final, logout_sys
+from .views import (
+    list_secoes,
+    list_divisoes,
+    list_grupos,
+    list_classes,
+    save_search,
+    save_search_final,
+    logout_sys
+)
 
 
 urlpatterns = [

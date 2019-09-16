@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+{% block title %}Pesquisa CNAE{% endblock %}
+
+
+{% block nav %}
+    {% load static %}
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="#">
+            <img src="{% static 'img/logo-ibge-branco.png' %}" alt="Logo" class="nav-logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/sobre">Sobre o Projeto</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'list_classes_cnae' %}">
+                        Fazer Pesquisa<span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item dropdown boas-vindas">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Seu Logon</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'minhas_pesquisas_cnae' %}">
+                            <i class="fas fa-database"></i> Consultar Pesquisas
+                        </a>
+                        <a class="dropdown-item" href="/edit/user"><i class="fas fa-user-edit"></i> Editar Perfil</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Sair</a>
+                    </div>
+                </li>
+            </ul>
+            <p class="boas-vindas">Bem-vindo, {{user.username}} <i class="fas fa-user"></i></p>
+        </div>
+    </nav>
+{% endblock %}
+
+
+{% block main %}
+    {% load static %}
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title">Salvar pesquisa</h1>
+                    <hr>
+                    <form action="{% url 'salva_busca_cnae' %}" method="POST">
+                        {% csrf_token %}
+
+                        {% render_field form.id_user class+="form-control" type="hidden" %}
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">ID Seção</span>
+                            </div>
+                            {% render_field form.secao_id class+="form-control" %}
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Descrição Seção</span>
+                            </div>
+                            {% render_field form.secao_descricao class+="form-control" %}
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">ID Divisão</span>
+                            </div>
+                            {% render_field form.divisao_id class+="form-control" %}
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Descrição Divisão</span>
+                            </div>
+                            {% render_field form.divisao_descricao class+="form-control" %}
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">ID Grupo</span>
+                            </div>
+                            {% render_field form.grupo_id class+="form-control" %}
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Descrição Grupo</span>
+                            </div>
+                            {% render_field form.grupo_descricao class+="form-control" %}
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">ID Classe</span>
+                            </div>
+                            {% render_field form.classe_id class+="form-control" %}
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Descrição Classe</span>
+                            </div>
+                            {% render_field form.classe_descricao class+="form-control" %}
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Observação Classe</span>
+                            </div>
+                            {% render_field form.classe_observacoes class+="form-control" %}
+                        </div>
+
+                        {% render_field form.published_date class+="form-control" type="hidden" %}
+
+                        {% render_field form.rel_ativo class+="form-control" type="hidden" %}
+
+                        <div class="mt-4 btn-group float-right" role="group" aria-label="Navegação de filtro">
+                            <button class="btn btn-secondary" type="button" onclick="window.history.back();">
+                                 <span class="fas fa-chevron-circle-left"></span> Voltar
+                            </button>
+                            <button class="btn btn-success" type="submit">
+                                Salvar <span class="fas fa-check-circle"></span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
