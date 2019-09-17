@@ -183,7 +183,7 @@ def pesquisa_user(request):
 
 
 # Retorna o JSON construido do 'objeto' criado no Models
-class IbgeCnaelist(APIView):
+class IbgeCnaeList(APIView):
 
     def get(self, request):
         lista_de_pesquisas = IbgeCNAE.objetos.all()

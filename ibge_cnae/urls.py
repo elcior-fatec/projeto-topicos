@@ -12,5 +12,5 @@ urlpatterns = [
     path('minhas-pesquisas/', views.pesquisa_user, name='minhas_pesquisas_cnae'),
     # TODO: Iniciando a migracao da app pesquisa para a nova app ibge_cnae
     # API REST
-    path('api-rest/', views.IbgeCnaelist.as_view())
+    path('api-rest/', views.IbgeCnaeList.as_view())
 ]
