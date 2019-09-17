@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils import timezone
-
+import rest_framework
 
 class IbgeCNAE(models.Model):
 
