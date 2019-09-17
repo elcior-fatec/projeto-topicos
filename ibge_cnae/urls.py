@@ -11,4 +11,6 @@ urlpatterns = [
     path('salva-busca/', views.save_search, name="salva_busca_cnae"),
     path('minhas-pesquisas/', views.pesquisa_user, name='minhas_pesquisas_cnae'),
     # TODO: Iniciando a migracao da app pesquisa para a nova app ibge_cnae
+    # API REST
+    path('api-rest/', views.IbgeCnaelist.as_view())
 ]

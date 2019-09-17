@@ -1,9 +1,15 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django import forms
+
 from .forms import Secoes, SalvaBuscaForm
 from .models import IbgeCNAE
+from .serializers import IbgeCNAESerializer
+
+from rest_framework import status
+from rest_framework.views import APIView
+from rest_framework.response import Response
 
 import requests
 import datetime
@@ -174,3 +180,15 @@ def save_search(request):
 def pesquisa_user(request):
     pesquisas = IbgeCNAE.objetos.filter(id_user=request.user.id)
     return render(request, 'ibge_cnae/minhas-pesquisas.html', {'pesquisas': pesquisas})
+
+
+# Retorna o JSON construido do 'objeto' criado no Models
+class IbgeCnaelist(APIView):
+
+    def get(self, request):
+        lista_de_pesquisas = IbgeCNAE.objetos.all()
+        serializer = IbgeCNAESerializer(lista_de_pesquisas, many=True)
+        return Response(serializer.data)
+
+    def post(self):
+        pass
