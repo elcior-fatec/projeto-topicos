@@ -2,9 +2,9 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django import forms
-from django.views.generic.list import ListView
 from .forms import Secoes, SalvaBuscaForm
 from .models import IbgeCNAE
+
 import requests
 import datetime
 
