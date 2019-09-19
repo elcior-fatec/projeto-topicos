@@ -2,7 +2,7 @@
 {% load bootstrap %}
 
 
-{% block title %}IBGE CNAE: Seções{% endblock %}
+{% block title %}Início{% endblock %}
 
 
 {% block nav %}
@@ -21,9 +21,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/sobre">Sobre o Projeto</a>
                 </li>
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="{% url 'list_secoes_cnae' %}">
-                        Fazer Pesquisa<span class="sr-only">(current)</span>
+                        Fazer Pesquisa
                     </a>
                 </li>
                 <li class="nav-item dropdown boas-vindas">
@@ -47,28 +47,28 @@
 
 {% block main %}
     {% load static %}
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                    <h1 class="card-title">Seção</h1>
-                    <p class="card-text">
-                        Selecione uma das opções para filtrar a Seção da <code>CNAE</code>.
-                    </p>
-                    <hr>
-                    <form action="{% url 'list_divisoes_cnae' %}" method="POST">
-                        {% csrf_token %}
-                        {% for radio in form.secoes %}
-                        <div class="form-check">
-                        {{ radio }}
-                        </div>
-                        {% endfor %}
-                        <button class="mt-4 btn btn-primary  float-right" type="submit">
-                            Próximo <span class="fas fa-chevron-circle-right"></span>
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="row">
+		<div class="col-12 col-md-6">
+			<div class="card">
+				<div class="card-body">
+					<h1 class="card-title">Pesquisa CNAE</h1>
+					<p class="card-text">
+						Realizar nova pesquisa <code>CNAE</code>.
+					</p>
+					<a href="{% url 'list_secoes_cnae' %}" class="btn btn-primary">Pesquisar</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-12 col-md-6">
+			<div class="card">
+				<div class="card-body">
+					<h1 class="card-title">Lista CNAE</h1>
+					<p class="card-text">
+						Listar, editar ou excluir os itens salvos das pesquisas <code>CNAE</code>.
+					</p>
+					<a href="{% url 'minhas_pesquisas_cnae' %}" class="btn btn-primary">Listar</a>
+				</div>
+			</div>
+		</div>
+	</div>
 {% endblock %}
