@@ -1,5 +1,9 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
 from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse_lazy
+from django.views.generic.base import TemplateView
+from django.views.generic.edit import DeleteView
 from django.http import HttpResponse
 from django import forms
 
@@ -15,8 +19,9 @@ import requests
 import datetime
 
 
-def teste(request):
-    return HttpResponse('A curiosidade matou o gato.')
+# Index CNAE
+class IndexTemplateView(TemplateView):
+    template_name = "ibge_cnae/index.html"
 
 
 # Lista as Seções CNAE
@@ -182,13 +187,30 @@ def pesquisa_user(request):
     return render(request, 'ibge_cnae/minhas-pesquisas.html', {'pesquisas': pesquisas})
 
 
+# Deleta item da pesquisa CNAE
+class PesquisaDeleteView(DeleteView):
+    model = IbgeCNAE
+    template_name = "ibge_cnae/deletar-item-cnae.html"
+    context_object_name = 'cnae_delete'
+    success_url = reverse_lazy('minhas_pesquisas_cnae')
+
+
 # Retorna o JSON construido do 'objeto' criado no Models
 class IbgeCnaeList(APIView):
 
     def get(self, request):
-        lista_de_pesquisas = IbgeCNAE.objetos.all()
+        lista_de_pesquisas = IbgeCNAE.objetos.all().filter(id_user=request.user.id)
         serializer = IbgeCNAESerializer(lista_de_pesquisas, many=True)
         return Response(serializer.data)
 
     def post(self):
         pass
+
+
+# Logout
+@login_required
+def logout_sys(request):
+    logout(request)
+    return redirect('index_cnae')
+
+

@@ -213,6 +213,10 @@ body {
    * Content
    */
 
+main {
+    width: 100%;
+}
+
 [role="main"] {
     padding-top: 133px; /* Space for fixed navbar */
 }

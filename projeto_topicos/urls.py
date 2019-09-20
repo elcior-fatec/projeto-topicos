@@ -26,13 +26,12 @@ from ibge_cnae import urls as ibge_cnae_urls
 
 
 urlpatterns = [
-    path('', include(cnae_urls)),
+    path('', include(ibge_cnae_urls)),
     path('ibge-cnae/', include(ibge_cnae_urls)),
 
     path('sobre/', sobre, name='sobre'),
     path('admin/', admin.site.urls),
     path('login/', auth_views.LoginView.as_view(), name='login'),
-    path('cnae/', include(cnae_urls)),
     path('perfil/', include(pesquisas_urls)),
     path('edit/', include(edit_users_urls)),
 ]
