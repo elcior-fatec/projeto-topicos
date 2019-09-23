@@ -7,8 +7,8 @@
 {% block nav %}
     {% load static %}
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-        <a class="navbar-brand" href="#">
-            <img src="{% static 'img/logo-proj.png' %}" alt="Logo" class="nav-logo">
+        <a class="navbar-brand" href="{% url 'index_cnae' %}">
+            <img src="{% static 'img/logo-ibge-branco.png' %}" alt="Logo" class="nav-logo">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
             aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,16 +18,20 @@
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/sobre">Sobre o Projeto<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{% url 'sobre' %}">
+                        Sobre o Projeto<span class="sr-only">(current)</span>
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/cnae/list-secoes">Fazer Pesquisa</a>
+                    <a class="nav-link" href="{% url 'list_secoes_cnae' %}">
+                        Fazer Pesquisa
+                    </a>
                 </li>
                 <li class="nav-item dropdown boas-vindas">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Seu Logon</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/perfil/pesquisas">
+                        <a class="dropdown-item" href="{% url 'minhas_pesquisas_cnae' %}">
                             <i class="fas fa-database"></i> Consultar Pesquisas
                         </a>
                         <a class="dropdown-item" href="/edit/user"><i class="fas fa-user-edit"></i> Editar Perfil</a>
@@ -121,19 +125,12 @@
         <li>
             <div class="media-body">
                 <hr>
-                <h2>Desenvolvido por <small>(alunos):</small></h2>
+                <h2>Desenvolvido por:</h2>
             </div>
         </li>
         <li class="media my-4">
             <div class="media-body">
                 <h3 class="mt-0 mb-1">Elcior Ferreira de Santana Carvalho</h3>
-                <h4>RA: 2840481623010</h4>
-            </div>
-        </li>
-        <li class="media">
-            <div class="media-body">
-                <h3 class="mt-0 mb-1">Fernando Fraga</h3>
-                <h4>RA: 2840481623015</h4>
             </div>
         </li>
     </ul>

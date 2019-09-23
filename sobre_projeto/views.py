@@ -5,4 +5,4 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def sobre(request):
-    return render(request, 'sobre.html')
+    return render(request, 'sobre_projeto/sobre.html')
