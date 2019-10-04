@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import DeleteView
+from django.views.generic.detail import DetailView
 from django.http import HttpResponse
 from django import forms
 
@@ -185,6 +186,13 @@ def save_search(request):
 def pesquisa_user(request):
     pesquisas = IbgeCNAE.objetos.filter(id_user=request.user.id)
     return render(request, 'ibge_cnae/minhas-pesquisas.html', {'pesquisas': pesquisas})
+
+
+# Pesquisar um item da pequisa armazenada
+@login_required
+def detalhar_item(request, id):
+    pesquisa = get_object_or_404(IbgeCNAE, pk=id)
+    return render(request, 'ibge_cnae/detalhes-item.html', {'pesquisa': pesquisa})
 
 
 # Deleta item da pesquisa CNAE
