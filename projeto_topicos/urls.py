@@ -18,20 +18,19 @@ from django.urls import path, include
 from django.contrib.auth import views as auth_views
 
 from sobre_projeto.views import sobre
-from filtro_cnae import urls as cnae_urls
-from pesquisas import urls as pesquisas_urls
 from edit_users import urls as edit_users_urls
 
 from ibge_cnae import urls as ibge_cnae_urls
+from ibge_noticias import urls as ibge_noticias_urls
 
 
 urlpatterns = [
     path('', include(ibge_cnae_urls)),
     path('ibge-cnae/', include(ibge_cnae_urls)),
+    path('ibge-noticias/', include(ibge_noticias_urls)),
     path('sobre/', sobre, name='sobre'),
     path('admin/', admin.site.urls),
     path('login/', auth_views.LoginView.as_view(), name='login'),
 
-    path('perfil/', include(pesquisas_urls)),
     path('edit/', include(edit_users_urls)),
 ]

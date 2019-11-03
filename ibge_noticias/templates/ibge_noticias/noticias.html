@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Notícias IBGE{% endblock %}
+
+
+{% block nav %}
+{% load static %}
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<a class="navbar-brand" href="{% url 'index_cnae' %}">
+		<img src="{% static 'img/logo-ibge-branco.png' %}" alt="Logo" class="nav-logo">
+	</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+	        aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item">
+				<a class="nav-link" href="/sobre">Sobre o Projeto</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="{% url 'list_classes_cnae' %}">
+					Fazer Pesquisa
+				</a>
+			</li>
+            <li class="nav-item">
+				<a class="nav-link" href="{% url 'ibge_noticias' %}">
+					Notícias
+				</a>
+			</li>
+			<li class="nav-item dropdown boas-vindas active">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+				   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Seu Logon</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item active" href="{% url 'minhas_pesquisas_cnae' %}">
+						<i class="fas fa-database"></i> Consultar Pesquisas<span class="sr-only">(current)</span>
+					</a>
+					<a class="dropdown-item" href="/edit/user"><i class="fas fa-user-edit"></i> Editar Perfil</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Sair</a>
+				</div>
+			</li>
+		</ul>
+		<p class="boas-vindas">Bem-vindo, {{user.username}} <i class="fas fa-user"></i></p>
+	</div>
+</nav>
+{% endblock %}
+
+
+{% block main %}
+{% load static %}
+<div class="row">
+	<div class="col-12">
+		<div class="card">
+			<div class="card-body">
+				<h1 class="card-title">Notícias IBGE</h1>
+				<hr>
+                {% for noticia in noticias %}
+                <p>
+                    <a href="{{ noticia.link }}" target="_blank">{{ noticia.titulo }}</a><br>
+                    <small>{{ noticia.data }}</small>
+                </p>
+                {% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

@@ -14,7 +14,7 @@ urlpatterns = [
     path('minhas-pesquisas/', views.pesquisa_user, name='minhas_pesquisas_cnae'),
     path('deletar/item/<int:pk>', views.PesquisaDeleteView.as_view(), name='deletar_item_cnae'),
     path('detalhes-item/<int:id>/', views.detalhar_item, name='detalhar_item'),
-    # TODO: Migrar o "Detalhes" de pesquisas para o modulo ibge_cnae
+
     # API REST
     path('api-rest/', login_required(views.IbgeCnaeList.as_view()), name='api_cnae')
 ]

@@ -45,9 +45,9 @@ INSTALLED_APPS = [
     'bootstrapform',
     'widget_tweaks',
     'sobre_projeto',
-    'filtro_cnae',
     'edit_users',
     'ibge_cnae',
+    'ibge_noticias',
 ]
 
 MIDDLEWARE = [
